@@ -62,6 +62,7 @@ model Album {
   title     String
   artist    String
   imageUrl  String?
+  link      String   @unique // this is unique 
   songs     Song[]
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -73,7 +74,7 @@ model Song {
   id        String   @id
   title     String
   link      String?
-  album     Album    @relation(fields: [albumId], references: [id])
+  album     Album    @relation(fields: [albumId], references: [id], onDelete: Cascade)
   albumId   String
   ranks     Rank[]
   createdAt DateTime @default(now())
@@ -86,7 +87,7 @@ model Rank {
   id        Int      @id @default(autoincrement())
   user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId    String
-  song      Song     @relation(fields: [songId], references: [id])
+  song      Song     @relation(fields: [songId], references: [id], onDelete: Cascade)
   songId    String
   position  Int
   createdAt DateTime @default(now())

@@ -1,6 +1,7 @@
 "use client";
 
 import { useSession, signIn, signOut } from "next-auth/react";
+import AlbumsTable from "./components/AlbumsTable";
 
 export default function Component() {
   const { data: session } = useSession();
